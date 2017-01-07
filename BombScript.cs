@@ -10,8 +10,9 @@ public class BombScript : MonoBehaviour
 	bool p1Thumb = false;    // These are true when the thumb is down
 	[SerializeField]
 	bool p2Thumb = false;
-
-
+	[SerializeField]
+	float time;
+	bool timeSet = false;
 
 	void OnEnable()
 
@@ -28,34 +29,41 @@ public class BombScript : MonoBehaviour
 	{
 		if (p1Thumb == true && p2Thumb == true)   // When both thumbs are down the bomb moves toward the lowest side of the device
 		{
+			if (timeSet == false)
+			{
+				timeSet = true;
+				time = Time.timeSinceLevelLoad;
+			}
+
+
 
 			if (0.5f > Input.acceleration.y & Input.acceleration.y > 0f)
 			{
-				bombPostion.y = bombPostion.y + 0.01f * Time.timeSinceLevelLoad;    // So the bomb will slowly increase speed the longer the game has been running.
+				bombPostion.y = bombPostion.y + 0.01f * (Time.timeSinceLevelLoad - time);    // So the bomb will slowly increase speed the longer the game has been running.
 			}
 			if (1f > Input.acceleration.y & Input.acceleration.y > 0.5f)
 			{
-				bombPostion.y = bombPostion.y + 0.02f * Time.timeSinceLevelLoad;
+				bombPostion.y = bombPostion.y + 0.02f * (Time.timeSinceLevelLoad - time);
 			}
 			if (1.5f > Input.acceleration.y & Input.acceleration.y > 1f)
 			{
-				bombPostion.y = bombPostion.y + 0.03f * Time.timeSinceLevelLoad;
+				bombPostion.y = bombPostion.y + 0.03f * (Time.timeSinceLevelLoad - time);
 			}
 			
 
 			if (-0.5f < Input.acceleration.y & Input.acceleration.y < 0f)
 			{
-				bombPostion.y = bombPostion.y - 0.01f * Time.timeSinceLevelLoad;
+				bombPostion.y = bombPostion.y - 0.01f * (Time.timeSinceLevelLoad - time);
 			}
 
 			if (-1f < Input.acceleration.y & Input.acceleration.y < -0.5f)
 			{
-				bombPostion.y = bombPostion.y - 0.02f * Time.timeSinceLevelLoad;
+				bombPostion.y = bombPostion.y - 0.02f * (Time.timeSinceLevelLoad - time);
 			}
 
 			if (-1.5f < Input.acceleration.y & Input.acceleration.y < -1f)
 			{
-				bombPostion.y = bombPostion.y - 0.03f * Time.timeSinceLevelLoad;
+				bombPostion.y = bombPostion.y - 0.03f * (Time.timeSinceLevelLoad - time);
 			}
 
 
