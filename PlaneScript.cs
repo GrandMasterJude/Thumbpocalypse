@@ -5,9 +5,6 @@ public class PlaneScript : MonoBehaviour {
 
 	public GameObject Bomb;
 
-
-
-
 	void Start ()
 	{
 		StartCoroutine(BombDrop());

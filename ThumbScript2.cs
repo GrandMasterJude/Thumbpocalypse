@@ -44,4 +44,9 @@ public class ThumbScript2 : MonoBehaviour
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
 	}
 
+	public void Unsubscribe()
+	{
+		EasyTouch.On_TouchDown -= On_TouchDown;
+		EasyTouch.On_TouchUp -= On_TouchUp;
+	}
 }
